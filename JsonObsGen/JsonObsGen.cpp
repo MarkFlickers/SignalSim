@@ -14,6 +14,7 @@
 #include "Rinex.h"
 #include "JsonParser.h"
 #include "JsonInterpreter.h"
+#include "MessageOutput.h"
 
 #define TOTAL_GPS_SAT 32
 #define TOTAL_BDS_SAT 63
@@ -61,6 +62,8 @@ int main(int argc, char* argv[])
 	JsonObject *Object;
 
 	memset(&DelayConfig, 0, sizeof(DelayConfig));
+	SetOutputFile(stdout);
+	SetOutputLevel(MSG_LEVEL_INFO);
 
 	// JSON configuration file must be passed as the first command-line argument.
 	if (argc < 2 || strcmp(argv[1], "-h") == 0 || strcmp(argv[1], "--help") == 0)
