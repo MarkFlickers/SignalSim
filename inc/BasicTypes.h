@@ -335,4 +335,12 @@ typedef struct
 
 } SATELLITE_PARAM, *PSATELLITE_PARAM;
 
+typedef struct {
+	KINEMATIC_INFO SatPos;
+	double SatTime;
+	PSATELLITE_PARAM SatParam;
+	PGPS_EPHEMERIS Eph;
+	PIONO_PARAM Iono;
+} OBSERVATION_DETAILS , *POBSERVATION_DETAILS;
+
 #endif //__BASIC_TYPE_H__

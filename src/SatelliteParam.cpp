@@ -80,7 +80,7 @@ int GetGlonassVisibleSatellite(KINEMATIC_INFO Position, GLONASS_TIME time, OUTPU
 
 #define USE_POSITION_PREDICTION 0
 
-void GetSatelliteParam(KINEMATIC_INFO PositionEcef, LLA_POSITION PositionLla, GNSS_TIME time, GnssSystem system, PGPS_EPHEMERIS Eph, PIONO_PARAM IonoParam, PSATELLITE_PARAM SatelliteParam, PKINEMATIC_INFO SatellitePositionEcef)
+void GetSatelliteParam(KINEMATIC_INFO PositionEcef, LLA_POSITION PositionLla, GNSS_TIME time, GnssSystem system, PGPS_EPHEMERIS Eph, PIONO_PARAM IonoParam, PSATELLITE_PARAM SatelliteParam, POBSERVATION_DETAILS ObservationDetails)
 {
 	KINEMATIC_INFO SatPosition;
 	double Distance, TravelTime, SatelliteTime = (time.MilliSeconds + time.SubMilliSeconds) / 1000.0;
@@ -184,7 +184,11 @@ void GetSatelliteParam(KINEMATIC_INFO PositionEcef, LLA_POSITION PositionLla, GN
 	SatelliteParam->Elevation = Elevation;
 	SatelliteParam->Azimuth = Azimuth;
 	SatelliteParam->RelativeSpeed = SatRelativeSpeed(&PositionEcef, &SatPosition) - LIGHT_SPEED * Eph->af1;
-	*SatellitePositionEcef = SatPosition; 
+	ObservationDetails->SatPos = SatPosition;
+	ObservationDetails->SatTime = SatelliteTime;
+	ObservationDetails->Eph = Eph;
+	ObservationDetails->SatParam = SatelliteParam;
+	ObservationDetails->Iono = IonoParam;
 }
 
 void GetSatelliteCN0(int PowerListCount, SIGNAL_POWER PowerList[], double DefaultCN0, enum ElevationAdjust Adjust, PSATELLITE_PARAM SatelliteParam)
