@@ -1,3 +1,7 @@
 .vs
 IFdataGen/out/build
 IFdataGen/bin_signals/
+build
+bin
+*.pos
+*.obs
