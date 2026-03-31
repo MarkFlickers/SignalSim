@@ -416,8 +416,8 @@ void PrintObservationDetails(FILE *fp, double timestamp, OBSERVATION_DETAILS Obs
 		if ((obs.ValidMask & (1 << i)) == 0)
 			continue;
 		sprintf(str, "%.2f,%c%02d", timestamp, "GCER"[obs.system], obs.svid);
-		sprintf(str + strlen(str), ",%.10f,%.10f,%.10f,%.10f", obs.PseudoRange[i], obs.CarrierPhase[i], obs.Doppler[i], obs.CN0[i]);
-		sprintf(str + strlen(str), ",%.10f,%.10f,%.10f,%.10f,%.10f,%.10f", ObsDet.SatPos.x, ObsDet.SatPos.y, ObsDet.SatPos.z, ObsDet.SatPos.vx, ObsDet.SatPos.vy, ObsDet.SatPos.vz);
+		sprintf(str + strlen(str), ",%.15f,%.15f,%.15f,%.15f", obs.PseudoRange[i], obs.CarrierPhase[i], obs.Doppler[i], obs.CN0[i]);
+		sprintf(str + strlen(str), ",%.15f,%.15f,%.15f,%.15f,%.15f,%.15f", ObsDet.SatPos.x, ObsDet.SatPos.y, ObsDet.SatPos.z, ObsDet.SatPos.vx, ObsDet.SatPos.vy, ObsDet.SatPos.vz);
 		sprintf(str + strlen(str), ",%.16f,%.16f,%.16f,%.16f", ObsDet.SatParam->TravelTime, ObsDet.SatTime, ObsDet.SatParam->IonoDelay, ObsDet.SatParam->GroupDelay[i]);
 		sprintf(str + strlen(str), ",%.16f,%.16f,%.16f,%d", ObsDet.Eph->af0, ObsDet.Eph->af1, ObsDet.Eph->af2, ObsDet.Eph->toc);
 		sprintf(str + strlen(str), ",%.16f,%.16f,%.16f,%.16f", ObsDet.Eph->ecc, ObsDet.Eph->sqrtA, ObsDet.Eph->Ek, ObsDet.Eph->Ek_dot);
